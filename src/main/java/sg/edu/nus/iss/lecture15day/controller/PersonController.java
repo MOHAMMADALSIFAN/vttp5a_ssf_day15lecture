@@ -65,7 +65,7 @@ public class PersonController {
       
   }
   @GetMapping("/delete/{id}")
-  public String getMethodName(@PathVariable("id") String Id) {
+  public String deleteId(@PathVariable("id") String Id) {
     List<Person> persons = personservice.findAll(Util.keyPerson);
     Person foundPerson = persons.stream()
     .filter(p -> p.getId().equals(Id))
@@ -77,6 +77,35 @@ public class PersonController {
   }
       return "redirect:/person";
   }
+  
+  @GetMapping("/edit/{id}")
+  public String editId(@PathVariable("id")String Id, Model model) {
+    List<Person> p = personservice.findAll(Util.keyPerson);
+    List<Person> persons = personservice.findAll(Util.keyPerson);
+    Person foundPerson = persons.stream()
+    .filter(t -> t.getId().equals(Id))
+    .findFirst()
+    .orElse(null);
+    
+
+    model.addAttribute("per", foundPerson);
+
+      return "personupdate";
+  }
+
+  @PostMapping("/edit")
+  public String postUpdateForm(@Valid @ModelAttribute("per") Person person, BindingResult result, Model model) {
+
+    if (result.hasErrors())
+        return "personupdate";
+    
+  else{
+    personservice.addPerson(Util.keyPerson, person);
+  }
+
+    return "redirect:/person";
+}
+  
   
   
 

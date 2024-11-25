@@ -29,7 +29,11 @@
           <td th:text="${person.fullName}"></td>
           <td th:text="${person.email}"></td>
           <td th:text="${person.dateofBirth}"></td>
-          <td><a class= "btn btn-danger" th:href= "@{/person/delete/{Id}(Id=${person.Id})}">Delete</thre></td>
+          <td>
+            <a class="btn btn-danger" th:href="@{/person/delete/{Id}(Id=${person.Id})}"
+              style="margin-right: 5px;">Delete</a>
+            <a class="btn btn-warning" th:href="@{/person/edit/{Id}(Id=${person.Id})}">Edit</a>
+          </td>
         </tr>
       </tbody>
     </table>

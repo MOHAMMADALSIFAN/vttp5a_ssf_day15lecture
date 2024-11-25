@@ -23,7 +23,7 @@ public class Person {
   @Email(message="Email is mandatory")
   private String email;
 
-  @DateTimeFormat(pattern = "YYYY-MM-DD")
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   @Past(message = "LocalDate of Birth is mandatory & must be in past" )
   private LocalDate dateofBirth;
 
